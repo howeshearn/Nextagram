@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link , useHistory } from 'react-router-dom'
 
 import LoginModal from './LoginModal'
 import SignUpModal from './SignUpModal'
@@ -16,6 +16,8 @@ function Navbar(props) {
     const [signupModal, setSignUpModal] = useState(false)
     const [uploadModal, setUploadModal] = useState(false)
 
+    let history = useHistory();
+
     const showLoginModal = () => {
         setLoginModal(!loginModal)
     }
@@ -27,6 +29,7 @@ function Navbar(props) {
     }
     const handleLogOut = () => {
         localStorage.removeItem('jwt');
+        history.push('/')
         props.updateUser({});
     }
 
@@ -38,7 +41,6 @@ function Navbar(props) {
                     props.currentUser.id ?
                         <div>
                             <Link to={`/users/${props.currentUser.id}`}>Profile</Link>
-                            {/* <Link to={`/users/1`}>Profile</Link> */}
                             <button onClick={() => { setUploadModal(true) }}>Upload</button>
                             <button onClick={handleLogOut}>Log Out</button>
                         </div>

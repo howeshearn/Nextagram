@@ -52,16 +52,18 @@ function UploadModal(props) {
         e.preventDefault();
         let token = localStorage.getItem('jwt')
         let formData = new FormData();
-        formData.append("image, imageFile");
+        formData.append("image", imageFile);
 
         Axios.post("https://insta.nextacademy.com/api/v1/images/", formData, {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(response => {
+        .then(response => {
+            console.log(response)
                 if (response.data.success) {
                     setFormMessage("Image Sucessfully Uploaded!")
                     setImagePreview(null)
                     setImageFile(null)
+                    props.toggleshowUploadModal();
                 }
             })
             .catch(error => {

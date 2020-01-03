@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import UserOverview from '../components/UserOverview'
 import axios from 'axios'
+// import { useHistory } from 'react-router-dom'
 
 
 function HomePage(props) {
+    // let history = useHistory()
+
+    // if (Object.keys(props.currentUser).length === 0) {
+    //     history.push('/login')
+    //     // toast('login first')
+    // }
 
     const [userInfos, setUserInfos] = useState([])
 

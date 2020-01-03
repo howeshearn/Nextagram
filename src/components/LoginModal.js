@@ -33,6 +33,7 @@ function LoginModal(props) {
     const [usernameInput, setUsernameInput] = useState('')
     const [passwordInput, setPasswordInput] = useState('')
     const [formMessage, setFormMessage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleUsernameInput = (e) => {
         setUsernameInput(e.target.value)
@@ -46,21 +47,25 @@ function LoginModal(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setUsernameInput('')
-        setPasswordInput('')
+        setIsLoading(true)
 
         Axios.post('https://insta.nextacademy.com/api/v1/login', {
             username: usernameInput,
             password: passwordInput
         })
             .then(response => {
+                setIsLoading(false);
                 console.log(response.data)
                 localStorage.setItem('jwt', response.data.auth_token)
                 props.updateUser(response.data.user)
-                props.showLoginModal();
+                setUsernameInput('')
+                setPasswordInput('')
+                props.showLoginModal()
             })
             .catch(error => {
                 console.log(error.response)
+                setFormMessage(error.response.data.message)
+                setIsLoading(false)
             })
     }
 
@@ -77,7 +82,7 @@ function LoginModal(props) {
                     <br />
                     <input type='password' placeholder='Password' value={passwordInput} onChange={handlePasswordInput} />
                     <br />
-                    <input type='submit' value='Login' disabled={usernameInput.length === 0 || passwordInput.length === 0} />
+                    <input type='submit' value={isLoading ? 'Logging In' : 'Log In'} disabled={usernameInput.length === 0 || passwordInput.length === 0 || isLoading} />
                 </form>
                 <p>{formMessage}</p>
             </div>

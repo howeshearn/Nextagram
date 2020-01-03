@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import UserProfilePage from './pages/UserProfilePage';
 import Axios from 'axios';
+// import LoginPage from './pages/LoginPage';
 
 function App() {
 
@@ -39,6 +40,9 @@ function App() {
         <Route exact path='/'>
           <HomePage currentUser={currentUser} />
         </Route>
+        {/* <Route path='/login'> */}
+          {/* <LoginPage currentUser={currentUser} /> */}
+        {/* </Route> */}
         <Route path='/users/:id'>
           <UserProfilePage />
         </Route>
