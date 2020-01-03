@@ -16,14 +16,13 @@ function UserGallery(props) {
 
     const [images, setImages] = useState([])
     const [isLoading, setLoading] = useState(true)
-
     useEffect(() => {
         axios.get(`https://insta.nextacademy.com/api/v1/images?userId=${props.id}`)
             .then(result => {
                 setImages(result.data)
                 setLoading(false)
             })
-    }, []);
+    }, [props.id]);
 
     if (isLoading === true) {
         return (

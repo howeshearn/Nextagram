@@ -22,7 +22,7 @@ function UserInfo(props) {
                 setLoading(false)
                 // console.log(result);
             })
-    }, []);
+    }, [props.id]);
 
     if (isLoading === true) {
         return (

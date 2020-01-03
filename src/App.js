@@ -39,7 +39,7 @@ function App() {
         <Route exact path='/'>
           <HomePage currentUser={currentUser} />
         </Route>
-        <Route exact path='/users/:id'>
+        <Route path='/users/:id'>
           <UserProfilePage />
         </Route>
       </Switch>
