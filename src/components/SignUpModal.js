@@ -83,10 +83,6 @@ function SignUpModal(props) {
             })
     }
 
-    // e.preventDefault()
-    // console.log(emailInput)
-    // console.log(usernameInput)
-    // console.log(passwordInput)
 
 
     return (
